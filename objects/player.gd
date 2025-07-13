@@ -123,7 +123,7 @@ func _physics_process(_delta: float) -> void:
 				layer_bullet.add_child(scene_instance)
 				scene_instance.global_position = arm_sprite.global_position
 				scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
-				scene_instance.global_position.y = scene_instance.global_position.y-2
+				scene_instance.global_position.y = scene_instance.global_position.y-2 #asd
 				gun_timer = gun_timer_max
 				arm_sprite.frame = 7
 				arm_animator.stop()
