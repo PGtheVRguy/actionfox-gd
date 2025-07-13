@@ -148,7 +148,6 @@ func _physics_process(_delta: float) -> void:
 			
 			var _vx = clamp((grap_position.x - position.x)*60, -grapple_max_speed, grapple_max_speed)
 			var _vy = clamp((grap_position.y - position.y)*60, -grapple_max_speed, grapple_max_speed)
-			print(_vx)
 			velocity.x = _vx
 			velocity.y = _vy
 			if(position.distance_to(grap_position) < 32):

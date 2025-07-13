@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bghxubhx2asd5"]
+[gd_scene load_steps=4 format=3 uid="uid://bghxubhx2asd5"]
 
 [ext_resource type="Script" uid="uid://dwvlsob1w5gw3" path="res://o_bullet.gd" id="1_6wtdh"]
 [ext_resource type="Texture2D" uid="uid://gru7xdaib4uv" path="res://sprites/player/spr_p_bullet.png" id="2_5fpt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wtdh"]
+size = Vector2(4, 2)
 
 [node name="o_bullet" type="CharacterBody2D"]
 script = ExtResource("1_6wtdh")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_5fpt7")
+
+[node name="collider" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="collider"]
+shape = SubResource("RectangleShape2D_6wtdh")
