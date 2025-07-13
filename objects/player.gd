@@ -150,8 +150,10 @@ func _physics_process(_delta: float) -> void:
 			var _vy = clamp((grap_position.y - position.y)*60, -grapple_max_speed, grapple_max_speed)
 			velocity.x = _vx
 			velocity.y = _vy
+			draw_line(global_position, grap_position, Color.WHITE, 3)
 			if(position.distance_to(grap_position) < 32):
 				state = states.GENERIC
+			
 	move_and_slide()
 	
 	hsp = velocity.x/60
@@ -162,7 +164,10 @@ func _physics_process(_delta: float) -> void:
 	camera.global_position.y = lerp(camera.global_position.y, (global_position.y-48)+vsp*9, 0.05)
 	
 	
-
+func _draw() -> void:
+	match state:
+		states.GRAPPLE:
+			draw_line(global_position, grap_position, Color.WHITE, 3) #why is this not drawing a line test test teset
 	
 
 func grapple(position):
