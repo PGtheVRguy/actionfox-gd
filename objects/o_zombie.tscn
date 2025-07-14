@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwk2mpk1u5upy"]
+
+[ext_resource type="Script" uid="uid://corrxk2dacwd0" path="res://objects/o_zombie.gd" id="1_ih16m"]
+[ext_resource type="Texture2D" uid="uid://duwfu7vluftsw" path="res://sprites/zombies/spr_zombie.png" id="1_wkia1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ih16m"]
+size = Vector2(13, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbx5t"]
+radius = 256.0
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_ih16m")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_wkia1")
+hframes = 16
+vframes = 3
+frame = 1
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_ih16m")
+
+[node name="playerView" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="playerView"]
+shape = SubResource("CircleShape2D_vbx5t")

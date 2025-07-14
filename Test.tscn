@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cag1jcb4urq1o"]
+[gd_scene load_steps=8 format=4 uid="uid://cag1jcb4urq1o"]
 
 [ext_resource type="PackedScene" uid="uid://cerfyv6ql6dtp" path="res://objects/o_player.tscn" id="1_njov2"]
 [ext_resource type="Texture2D" uid="uid://dcba5gmxjkj35" path="res://sprites/tilesets/spr_t_grass.png" id="3_2au82"]
 [ext_resource type="PackedScene" uid="uid://dgsagqjlndrhr" path="res://objects/grapple.tscn" id="3_8tn2x"]
+[ext_resource type="PackedScene" uid="uid://cwk2mpk1u5upy" path="res://objects/o_zombie.tscn" id="3_aq4fw"]
 
 [sub_resource type="Environment" id="Environment_njov2"]
 background_mode = 1
@@ -93,6 +94,12 @@ position = Vector2(165, -49)
 
 [node name="bullets" type="Node2D" parent="level"]
 position = Vector2(165, -49)
+
+[node name="grapple2" parent="level" instance=ExtResource("3_8tn2x")]
+position = Vector2(392, -72)
+
+[node name="Zombie" parent="level" instance=ExtResource("3_aq4fw")]
+position = Vector2(299, -16)
 
 [node name="Player" parent="." instance=ExtResource("1_njov2")]
 position = Vector2(0, -1)

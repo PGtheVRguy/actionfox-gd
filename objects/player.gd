@@ -163,7 +163,10 @@ func _physics_process(_delta: float) -> void:
 	
 	
 
-	
+func _draw():
+	match state:
+		states.GRAPPLE:
+			draw_line(global_position, grap_position, Color.BLUE, 4)
 
 func grapple(position):
 	grap_position = position
