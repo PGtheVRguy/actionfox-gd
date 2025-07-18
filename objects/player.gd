@@ -10,6 +10,7 @@ var can_jump := 10
 var jump_am := 1
 var mid_air := 1
 
+var hp = 3.0
 
 #Grapple values
 
@@ -198,3 +199,5 @@ func spriteDirectionOffset():
 		tail_sprite.global_position.x = global_position.x-8
 		tail_sprite.global_position.y = global_position.y+1
 						
+func damage(amount):
+	hp -= amount

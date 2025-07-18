@@ -6,13 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wtdh"]
 size = Vector2(4, 2)
 
-[node name="o_bullet" type="CharacterBody2D"]
+[node name="o_bullet" type="CharacterBody2D" groups=["bullet"]]
 script = ExtResource("1_6wtdh")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_5fpt7")
 
-[node name="collider" type="Area2D" parent="."]
+[node name="collider" type="Area2D" parent="." groups=["bullet"]]
 
-[node name="collider" type="CollisionShape2D" parent="collider"]
+[node name="collider" type="CollisionShape2D" parent="collider" groups=["bullet"]]
 shape = SubResource("RectangleShape2D_6wtdh")

@@ -13,6 +13,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func collide(collider2):
-	print(collider2)
+	#print(collider2)
 	if collider2 == get_node("/root/game/level/TileMapLayer"):
 		queue_free()
