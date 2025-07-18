@@ -20,7 +20,7 @@ const attackDistance = 16.0
 const forgetMaxTimer = 3
 const stunMaxTimer = 10
 const attackMaxTimer = 10
-
+const damage = 0.5
 
 @onready var playerView = $playerView
 @onready var player = $/root/game/Player/body
@@ -50,7 +50,8 @@ func _physics_process(delta: float) -> void:
 		attackTimer -= 1
 	attackTimer = clamp(attackTimer, 0, 99)
 	if(attackTimer > attackMaxTimer):
-		player.damage(0.5)
+		player.damage(damage)
+		attackTimer = 0.0
 	
 	velocity.y += GRAVITY
 	stunTimer -= 1

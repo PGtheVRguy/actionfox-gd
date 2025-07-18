@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu5opq62prb3g"]
+[gd_scene load_steps=8 format=3 uid="uid://bu5opq62prb3g"]
 
 [ext_resource type="Texture2D" uid="uid://jlfhb8x52bnl" path="res://sprites/gui/spr_gui_mag.png" id="1_87xfo"]
+[ext_resource type="Script" uid="uid://bwe8be44fptit" path="res://objects/gui_handler.gd" id="1_eedev"]
+[ext_resource type="Texture2D" uid="uid://dhto6w28xxd8r" path="res://sprites/gui/spr_gui_hearts.png" id="3_us1yw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87xfo"]
+atlas = ExtResource("1_87xfo")
+region = Rect2(0, 0, 16, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us1yw"]
+atlas = ExtResource("3_us1yw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63b8s"]
+atlas = ExtResource("3_us1yw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnxh3"]
+atlas = ExtResource("3_us1yw")
+region = Rect2(32, 0, 16, 16)
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -10,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("1_eedev")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -18,17 +37,48 @@ metadata/_edit_use_anchors_ = true
 offset_right = 455.0
 offset_bottom = 256.0
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="bottom_left" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="g_ammo" type="TextureRect" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="g_ammo" type="TextureRect" parent="CanvasLayer/MarginContainer/bottom_left"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 tooltip_text = "SIGMA"
-texture = ExtResource("1_87xfo")
+texture = SubResource("AtlasTexture_87xfo")
+stretch_mode = 2
+
+[node name="top_left" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="g_heart0" type="TextureRect" parent="CanvasLayer/MarginContainer/top_left"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "SIGMA"
+texture = SubResource("AtlasTexture_us1yw")
+stretch_mode = 2
+
+[node name="g_heart1" type="TextureRect" parent="CanvasLayer/MarginContainer/top_left"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "SIGMA"
+texture = SubResource("AtlasTexture_63b8s")
+stretch_mode = 2
+
+[node name="g_heart2" type="TextureRect" parent="CanvasLayer/MarginContainer/top_left"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "SIGMA"
+texture = SubResource("AtlasTexture_gnxh3")
 stretch_mode = 2

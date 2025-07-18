@@ -5,13 +5,16 @@ const JUMP_VELOCITY := -420.0 # -7.0 * 60
 const GRAVITY := 21.0 # 0.35 * 60
 const grapple_max_speed = 7*60
 const grapple_min_speed = 1*60
+const max_ammo = 8.0
 
 var can_jump := 10
 var jump_am := 1
 var mid_air := 1
 
 var hp = 3.0
-
+var ammo = 8.0
+var reloading = false
+var reload_timer = 0.0
 #Grapple values
 
 var grap_position = Vector2.ZERO
@@ -119,17 +122,31 @@ func _physics_process(_delta: float) -> void:
 				can_jump = 10
 				
 			if Input.is_action_just_pressed("shoot"):
-				print("SHOT")
-				var scene_instance = bullet.instantiate()
-				layer_bullet.add_child(scene_instance)
-				scene_instance.global_position = arm_sprite.global_position
-				scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
-				scene_instance.global_position.y = scene_instance.global_position.y-2 #asd
-				gun_timer = gun_timer_max
-				arm_sprite.frame = 7
-				arm_animator.stop()
-				arm_animator.play("p_gun_shoot")
-
+				if(ammo > 0 and reloading == false):
+					print("SHOT")
+					var scene_instance = bullet.instantiate()
+					layer_bullet.add_child(scene_instance)
+					scene_instance.global_position = arm_sprite.global_position
+					scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
+					scene_instance.global_position.y = scene_instance.global_position.y-2 #asd
+					gun_timer = gun_timer_max
+					arm_sprite.frame = 7
+					arm_animator.stop()
+					arm_animator.play("p_gun_shoot")
+					ammo -= 1
+					if(ammo == 0):
+						reloading = true
+			if reloading == true:
+				reload_timer += (1.0/30.0)
+				print(reload_timer)
+				if(reload_timer >= 1):
+					reload_timer = 0
+					ammo += 1
+					ammo = clamp(ammo, 0, max_ammo)
+					if(ammo == max_ammo):
+						reloading = false
+			if Input.is_action_just_pressed("reload"):
+				reloading = true
 			if gun_timer > 0:
 				gun_timer -= 1
 
