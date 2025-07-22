@@ -33,7 +33,7 @@ const damage = 0.5
 func _ready():
 	bulletCollision.connect("area_entered", shot_check)
 	if player == null:
-		get_tree().get_root().print_tree_pretty()
+		get_tree().get_root().print_tree_pretty() #Some debugging stuff because omg I kinda hate node system
 
 
 
