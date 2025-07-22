@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cag1jcb4urq1o"]
+
+[ext_resource type="PackedScene" uid="uid://cerfyv6ql6dtp" path="res://objects/o_player.tscn" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bu5opq62prb3g" path="res://objects/obj_gui.tscn" id="3_7jktm"]
+[ext_resource type="Script" uid="uid://brr8uggg0ivvf" path="res://level_loader.gd" id="4_fc0e3"]
+
+[node name="game" type="Node2D"]
+
+[node name="LevelLoader" type="Node2D" parent="."]
+script = ExtResource("4_fc0e3")
+
+[node name="Player" parent="." instance=ExtResource("2_fc0e3")]
+position = Vector2(0, -1)
+
+[node name="GUI" parent="." instance=ExtResource("3_7jktm")]
+offset_left = -225.0
+offset_top = -143.0
+offset_right = -225.0
+offset_bottom = -143.0

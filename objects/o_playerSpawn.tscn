@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch82s4hnr5gh4"]
+
+[ext_resource type="Texture2D" uid="uid://bok7ekpflktrc" path="res://sprites/player/spr_p_idle.png" id="1_mfcc1"]
+[ext_resource type="Script" uid="uid://b1oj4u7r6uem8" path="res://objects/o_player_spawn.gd" id="2_s47jp"]
+
+[node name="PlayerSpawner" type="Sprite2D"]
+texture = ExtResource("1_mfcc1")
+script = ExtResource("2_s47jp")

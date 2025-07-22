@@ -23,7 +23,7 @@ const attackMaxTimer = 10
 const damage = 0.5
 
 @onready var playerView = $playerView
-@onready var player = $/root/game/Player/body
+@onready var player = get_node_or_null("/root/game/Player/body")
 @onready var bulletCollision = $bulletCheck
 
 @onready var leftFloorCheck = $floorChecks/left
@@ -32,6 +32,8 @@ const damage = 0.5
 
 func _ready():
 	bulletCollision.connect("area_entered", shot_check)
+	if player == null:
+		get_tree().get_root().print_tree_pretty()
 
 
 

@@ -32,6 +32,7 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ih16m")
 
 [node name="playerView" type="Area2D" parent="."]
+visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="playerView"]
 shape = SubResource("CircleShape2D_vbx5t")

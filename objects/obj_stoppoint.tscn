@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://ssouaotfgve1"]
+
+[ext_resource type="Script" uid="uid://c4o5gkomh72ft" path="res://objects/obj_stoppoint.gd" id="1_gq8gh"]
+[ext_resource type="Texture2D" uid="uid://c7m8nycgmnmge" path="res://sprites/player/spr_stoppoints.png" id="1_j47uc"]
+[ext_resource type="PackedScene" uid="uid://cx2tpp86wft5w" path="res://levels/1-1.tscn" id="2_leia0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_leia0"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_leia0"]
+resource_name = "a_unplayed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qx232"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e6anf"]
+resource_name = "a_played"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5oyb0"]
+_data = {
+&"RESET": SubResource("Animation_qx232"),
+&"a_played": SubResource("Animation_e6anf"),
+&"a_unplayed": SubResource("Animation_leia0")
+}
+
+[node name="Stop" type="Node2D" groups=["stoppoint"]]
+script = ExtResource("1_gq8gh")
+metadata/levelNum = 1
+metadata/levelName = "First Level"
+metadata/LevelPath = ExtResource("2_leia0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_j47uc")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_leia0")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5oyb0")
+}

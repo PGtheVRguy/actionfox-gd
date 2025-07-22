@@ -1,0 +1,271 @@
+[gd_scene load_steps=13 format=4 uid="uid://ciq67g52v6ohv"]
+
+[ext_resource type="Texture2D" uid="uid://co6kuvdnnn3t8" path="res://sprites/tilesets/spr_t_worldmap.png" id="2_2e73p"]
+[ext_resource type="PackedScene" uid="uid://ssouaotfgve1" path="res://objects/obj_stoppoint.tscn" id="2_4g60y"]
+[ext_resource type="Texture2D" uid="uid://2xwhbaqv4q46" path="res://sprites/player/spr_wm_player.png" id="3_2e73p"]
+[ext_resource type="PackedScene" uid="uid://bkgffgl1nnxbv" path="res://levels/1-2.tscn" id="3_lymnk"]
+[ext_resource type="Script" uid="uid://b1oeoalxad5uk" path="res://wm_player.gd" id="4_aiiv4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w4oin"]
+texture = ExtResource("2_2e73p")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+24:0/0 = 0
+25:0/0 = 0
+26:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+24:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+7:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+26:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+24:3/0 = 0
+25:3/0 = 0
+26:3/0 = 0
+27:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+24:4/0 = 0
+25:4/0 = 0
+26:4/0 = 0
+27:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+26:5/0 = 0
+27:5/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+9:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+25:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+4:7/0 = 0
+21:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+21:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+20:9/0 = 0
+21:9/0 = 0
+22:9/0 = 0
+23:9/0 = 0
+24:9/0 = 0
+25:9/0 = 0
+26:9/0 = 0
+0:10/0 = 0
+20:10/0 = 0
+21:10/0 = 0
+22:10/0 = 0
+23:10/0 = 0
+24:10/0 = 0
+25:10/0 = 0
+27:10/0 = 0
+21:11/0 = 0
+22:11/0 = 0
+23:11/0 = 0
+24:11/0 = 0
+25:11/0 = 0
+26:11/0 = 0
+27:11/0 = 0
+21:12/0 = 0
+22:12/0 = 0
+24:12/0 = 0
+25:12/0 = 0
+26:12/0 = 0
+27:12/0 = 0
+21:13/0 = 0
+22:13/0 = 0
+23:13/0 = 0
+24:13/0 = 0
+25:13/0 = 0
+26:13/0 = 0
+27:13/0 = 0
+21:14/0 = 0
+22:14/0 = 0
+23:14/0 = 0
+24:14/0 = 0
+26:14/0 = 0
+27:14/0 = 0
+21:15/0 = 0
+22:15/0 = 0
+23:15/0 = 0
+24:15/0 = 0
+25:15/0 = 0
+26:15/0 = 0
+27:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4g60y"]
+sources/0 = SubResource("TileSetAtlasSource_w4oin")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4oin"]
+
+[sub_resource type="Animation" id="Animation_lymnk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4g60y"]
+resource_name = "wm_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aiiv4"]
+resource_name = "wm_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.239206, 0.5, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73jht"]
+_data = {
+&"RESET": SubResource("Animation_lymnk"),
+&"wm_idle": SubResource("Animation_4g60y"),
+&"wm_walk": SubResource("Animation_aiiv4")
+}
+
+[node name="worldmap" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1908.0
+offset_top = -916.0
+offset_right = 5185.0
+offset_bottom = 2299.0
+color = Color(0.6, 0.6, 1, 1)
+
+[node name="Ground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAFAAQAAAACAAIAAAAGAAQAAAADAAIAAAATAAgAAAADAAQAAAAXAAgAAAABAAQAAAAXAAYAAAABAAMAAAANAAYAAAABAAQAAAAMAAQAAAACAAMAAAATAAQAAAABAAQAABAXAAQAAAABAAIAAAASAAUAAAAAAAQAAAASAAQAAAAAAAQAAAAYAAQAAAAAAAQAABAYAAUAAAAAAAQAABAYAAYAAAAAAAQAABAYAAcAAAAAAAQAABAYAAgAAAAAAAQAABAYAAkAAAAAAAcAABASAAkAAAACAAcAAAARAAgAAAAAAAcAAAARAAkAAAAAAAgAAAARAAoAAAAAAAkAAAAYAAoAAAAAAAgAABAYAAsAAAAAAAkAABASAAwAAAACAAkAAAARAAsAAAAAAAoAAAAYAAwAAAAAAAoAABAOAAsAAAAAAAoAABALAAsAAAAAAAoAAAAEAAoAAAAAAAoAAAAHAAsAAAACAAkAAAAIAAsAAAAAAAkAABAIAAoAAAAAAAkAABAIAAkAAAAAAAkAABAIAAgAAAAAAAgAABAEAAcAAAAAAAgAAAAEAAgAAAAAAAkAAAAEAAkAAAAAAAkAAAALAAkAAAAAAAgAAAAOAAkAAAAAAAgAABAMAAgAAAABAAcAAAANAAgAAAABAAcAAAAMAAkAAAABAAgAAAANAAkAAAABAAgAAAAMAAoAAAABAAkAAAANAAoAAAABAAkAAAANAAsAAAABAAkAAAAMAAsAAAABAAkAAAALAAoAAAAAAAkAAAAOAAoAAAAAAAkAABALAAgAAAAAAAcAAAAOAAgAAAAAAAcAABAIAAcAAAAAAAcAABAHAAcAAAACAAcAAAAFAAYAAAABAAcAAAAGAAYAAAABAAcAAAAFAAcAAAABAAgAAAAGAAcAAAABAAgAAAAHAAgAAAABAAgAAAAGAAgAAAABAAkAAAAFAAgAAAABAAkAAAAHAAkAAAABAAkAAAAGAAkAAAABAAkAAAAFAAkAAAABAAkAAAAFAAoAAAABAAkAAAAGAAoAAAABAAkAAAAHAAoAAAABAAkAAAAEAAYAAAAAAAcAAAAIAAYAAAAAAAQAABAIAAUAAAAEAAIAAAAIAAQAAAAAAAQAABAIAAMAAAAAAAUAAEAEAAMAAAAAAAUAAFAEAAQAAAAAAAQAAAAEAAUAAAAGAAUAAAAFAAMAAAAAAAQAAFAGAAMAAAAAAAQAAFAHAAMAAAAAAAQAAFAHAAQAAAAGAAUAAAAHAAUAAAAGAAUAAAAHAAYAAAAGAAUAAAAGAAUAAAAGAAUAAAAFAAUAAAAGAAUAAAAMAAUAAAAGAAUAAAAMAAYAAAAGAAUAAAAMAAcAAAAGAAUAAAANAAcAAAAGAAUAAAANAAQAAAADAAYAAAANAAUAAAAGAAUAAAAOAAcAAAAEAAIAAAAOAAYAAAAAAAQAABAOAAUAAAAAAAQAABAOAAQAAAAAAAQAABALAAQAAAAAAAQAAAALAAUAAAAEAAIAABALAAYAAAAAAAQAAAALAAcAAAAAAAQAAAAMAAMAAAAAAAQAAEANAAMAAAAAAAQAAEALAAMAAAAAAAUAAFAOAAMAAAAAAAUAAEAYAAMAAAAAAAUAAEASAAMAAAAAAAUAAFARAAYAAAAAAAUAAFATAAkAAAABAAcAAAAUAAkAAAABAAcAAAAVAAkAAAABAAcAAAAWAAkAAAABAAcAAAAXAAkAAAABAAcAAAAXAAoAAAABAAgAAAAWAAoAAAABAAgAAAAVAAoAAAABAAgAAAAUAAoAAAABAAgAAAATAAoAAAABAAgAAAASAAoAAAACAAgAAAAXAAwAAAABAAkAAAAWAAwAAAABAAkAAAAVAAwAAAABAAkAAAAUAAwAAAABAAkAAAATAAwAAAABAAkAAAATAAsAAAABAAkAAAAUAAsAAAABAAkAAAAVAAsAAAABAAkAAAAWAAsAAAABAAkAAAAXAAsAAAABAAkAAAASAAsAAAABAAkAAAAUAAgAAAAGAAUAAAAVAAgAAAAGAAUAAAAWAAgAAAAGAAUAAAAXAAcAAAAGAAUAAAAWAAcAAAAGAAUAAAAWAAYAAAAGAAUAAAAVAAUAAAAGAAUAAAAVAAYAAAAGAAUAAAAUAAYAAAAGAAUAAAAUAAUAAAAGAAUAAAATAAUAAAAGAAUAAAASAAYAAAAGAAUAAAASAAgAAAAGAAUAAAAWAAUAAAAGAAUAAAAXAAUAAAAGAAUAAAAWAAQAAAAGAAUAAAAUAAQAAAAGAAUAAAAVAAQAAAAGAAUAAAATAAMAAAAAAAQAAFAUAAMAAAAAAAQAAFAVAAMAAAAAAAQAAFAWAAMAAAAAAAQAAFAXAAMAAAAAAAQAAFATAAYAAAAFAAQAAAATAAcAAAAFAAUAAAAQAAcAAAAFAAIAAAAPAAcAAAAFAAIAAAARAAcAAAAEAAIAABASAAcAAAAGAAUAAAAUAAcAAAAGAAUAAAAVAAcAAAAGAAUAAAAKAAUAAAAFAAIAAAAJAAUAAAAFAAIAAAA=")
+tile_set = SubResource("TileSet_4g60y")
+
+[node name="Path" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAHAAUAAAAEAAAAABATAAcAAAAEAAAAAAASAAcAAAABAAAAAAARAAcAAAABAAAAAAAQAAcAAAABAAAAAAAPAAcAAAABAAAAAAAOAAcAAAABAAAAAAANAAcAAAABAAAAAAAMAAYAAAABAAAAAGALAAUAAAABAAAAADAKAAUAAAABAAAAADAJAAUAAAABAAAAADAIAAUAAAABAAAAADAMAAUAAAAFAAAAAGAMAAcAAAAFAAAAAFA=")
+tile_set = SubResource("TileSet_4g60y")
+
+[node name="Stoppoints" type="Node2D" parent="."]
+
+[node name="Stop1" parent="Stoppoints" instance=ExtResource("2_4g60y")]
+position = Vector2(120, 88)
+
+[node name="Stop2" parent="Stoppoints" instance=ExtResource("2_4g60y")]
+position = Vector2(200, 88)
+metadata/levelNum = 2
+metadata/levelName = "Second Level"
+metadata/LevelPath = ExtResource("3_lymnk")
+
+[node name="Stop3" parent="Stoppoints" instance=ExtResource("2_4g60y")]
+position = Vector2(200, 120)
+metadata/levelNum = 3
+metadata/levelName = "Third Level"
+metadata/LevelPath = ExtResource("3_lymnk")
+
+[node name="Stop4" parent="Stoppoints" instance=ExtResource("2_4g60y")]
+position = Vector2(312, 120)
+metadata/levelNum = 4
+metadata/levelName = "Forth Level"
+metadata/LevelPath = ExtResource("3_lymnk")
+
+[node name="wmPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(120, 81)
+script = ExtResource("4_aiiv4")
+
+[node name="Sprite" type="Sprite2D" parent="wmPlayer"]
+texture = ExtResource("3_2e73p")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wmPlayer"]
+shape = SubResource("RectangleShape2D_w4oin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="wmPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_73jht")
+}
+
+[node name="stopChecker" type="Marker2D" parent="wmPlayer"]
+position = Vector2(0, 7)

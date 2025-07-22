@@ -15,14 +15,22 @@ var hp = 3.0
 var ammo = 8.0
 var reloading = false
 var reload_timer = 0.0
+
+var respawnPos = global_position
+
+
 #Grapple values
 
 var grap_position = Vector2.ZERO
-
+var grap_time = 0
 #Gun Values
 
 var gun_timer = 0
 var gun_timer_max = 3*60
+
+#Win Values
+var winPosition = Vector2.ZERO
+var winOffset = 0.0
 
 
 #GM values that I then convert cuz im epic
@@ -30,10 +38,11 @@ var hsp = 0
 var vsp = 0
 
 
+var keys = 0
 
 
 @onready
-var camera = $"../Camera2D"
+var camera = $"../Camera"
 @onready
 var body_sprite = $BodySprite
 
@@ -60,11 +69,13 @@ var bullet = preload("res://objects/o_bullet.tscn")
 
 func _ready() -> void:
 	print("I am at: ", get_path())
+	#bulletCollision.connect("area_entered", shot_check)
 
 
 func _physics_process(_delta: float) -> void:
 	match state:
 		states.GENERIC:
+			grap_time = 0
 			if not is_on_floor():
 				mid_air = 2
 				if(velocity.y > 0):
@@ -125,12 +136,13 @@ func _physics_process(_delta: float) -> void:
 				if(ammo > 0 and reloading == false):
 					print("SHOT")
 					var scene_instance = bullet.instantiate()
+					layer_bullet = get_bullet_layer()
 					layer_bullet.add_child(scene_instance)
 					scene_instance.global_position = arm_sprite.global_position
 					scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
 					scene_instance.global_position.y = scene_instance.global_position.y-2 #asd
 					gun_timer = gun_timer_max
-					arm_sprite.frame = 7
+					arm_sprite.frame = 7 
 					arm_animator.stop()
 					arm_animator.play("p_gun_shoot")
 					ammo -= 1
@@ -162,14 +174,32 @@ func _physics_process(_delta: float) -> void:
 					arm_sprite.rotation += deg_to_rad(180)
 			else:
 				arm_sprite.rotation = 0
+				
+			
 		states.GRAPPLE:
 			
 			var _vx = clamp((grap_position.x - position.x)*60, -grapple_max_speed, grapple_max_speed)
 			var _vy = clamp((grap_position.y - position.y)*60, -grapple_max_speed, grapple_max_speed)
 			velocity.x = _vx
 			velocity.y = _vy
+			grap_time += 1
 			if(position.distance_to(grap_position) < 32):
 				state = states.GENERIC
+			if(grap_time > 10):
+				if Input.is_action_just_pressed("grapple"):
+					state = states.GENERIC
+		states.WIN:
+			hsp = 0
+			vsp = 0
+			velocity.x = 0
+			velocity.y = 0
+			winOffset += 1.0/60.0
+			print(winOffset)
+			global_position.x = lerp(global_position.x, winPosition.x, 0.05)
+			global_position.y = lerp(global_position.y, winPosition.y, 0.05)-winOffset
+			if(winOffset > 4.0 ):
+				Global.winLevel()
+				#Global.transitionTo_Map()
 	move_and_slide()
 	
 	hsp = velocity.x/60
@@ -218,3 +248,29 @@ func spriteDirectionOffset():
 						
 func damage(amount):
 	hp -= amount
+	
+
+
+func get_bullet_layer():
+	return get_node_or_null("/root/game/level/bullets")
+
+func reset():
+	print("Resetting player...")
+	
+	
+	var layer_bullet = get_node_or_null("/root/game/level/bullets")
+	print(layer_bullet)
+	if layer_bullet == null:
+		
+		push_error("layer_bullet is null! Level probably hasn't loaded yet.")
+		return
+
+func win():
+	state = states.WIN
+
+func addKey():
+	keys += 1
+	return 0
+
+func resetCamera():
+	camera.global_position = global_position
