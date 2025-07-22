@@ -51,6 +51,10 @@ var arm_sprite = $ArmSprite
 @onready
 var tail_sprite = $TailSprite
 
+@onready
+var death_sprite = $DeathSprite
+
+
 
 @onready
 var animator = $"Animator"
@@ -58,7 +62,8 @@ var animator = $"Animator"
 var arm_animator = $ArmAnimator
 @onready
 var layer_bullet = get_node("/root/game/level/bullets")
-
+@onready
+var respawnArea = $respawnCols
 
 enum states{GENERIC, DYING, WIN, GRAPPLE}
 
@@ -200,6 +205,23 @@ func _physics_process(_delta: float) -> void:
 			if(winOffset > 4.0 ):
 				Global.winLevel()
 				#Global.transitionTo_Map()
+		states.DYING:
+			arm_sprite.visible = false
+			body_sprite.visible = false 
+			tail_sprite.visible = false
+			death_sprite.visible = true
+			animator.play("p_die")
+			if(Input.is_action_just_pressed("jump")):
+				Global.resetLevel()
+	
+	#check respawn area
+	
+
+	
+	if(isRespawnAllowed()):
+		respawnPos = global_position
+	if(hp <= 0):
+		state = states.DYING
 	move_and_slide()
 	
 	hsp = velocity.x/60
@@ -274,3 +296,12 @@ func addKey():
 
 func resetCamera():
 	camera.global_position = global_position
+func isRespawnAllowed(): #I'll be entirely honest I stole this part
+	var left_hit = $ResLeft.get_overlapping_bodies().any(func(b): return b.is_in_group("floor"))
+	var right_hit = $ResRight.get_overlapping_bodies().any(func(b): return b.is_in_group("floor"))
+	return left_hit and right_hit
+	
+func softRespawn():
+	global_position = respawnPos
+	resetCamera()
+	damage(1)

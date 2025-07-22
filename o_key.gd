@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	offsetPos =  sin(Global.tick/60.0)*0.2
-	print(offsetPos)
+	#print(offsetPos)
 	global_position.y += offsetPos
 
 func collided(collider2):

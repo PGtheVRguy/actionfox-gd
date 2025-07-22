@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://qkdn2ytjdsbi"]
+
+[ext_resource type="Script" uid="uid://c7b2fr1grw2mn" path="res://objects/o_death_plane.gd" id="1_08lv5"]
+[ext_resource type="Texture2D" uid="uid://cfwnufs7gwvxd" path="res://sprites/spr_deathPlane.png" id="1_u4s3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08lv5"]
+size = Vector2(16, 16)
+
+[node name="o_deathPlane" type="StaticBody2D"]
+script = ExtResource("1_08lv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u4s3x")
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_08lv5")

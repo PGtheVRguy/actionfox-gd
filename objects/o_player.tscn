@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cerfyv6ql6dtp"]
+[gd_scene load_steps=26 format=3 uid="uid://cerfyv6ql6dtp"]
 
 [ext_resource type="Script" uid="uid://ponwuoa3ilvt" path="res://objects/player.gd" id="1_e7tfm"]
 [ext_resource type="Texture2D" uid="uid://bqw8boyy3d5iu" path="res://sprites/player/spr_p_sheet.png" id="2_e7tfm"]
 [ext_resource type="Texture2D" uid="uid://bswngnjwg48dg" path="res://sprites/player/spr_a_sheet.png" id="3_1jg0o"]
 [ext_resource type="Texture2D" uid="uid://sp26b45bk3rx" path="res://sprites/spr_circle.png" id="3_4sbt0"]
+[ext_resource type="Texture2D" uid="uid://ch65yy4i11agi" path="res://sprites/player/spr_p_death.png" id="5_fhjak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jg0o"]
 size = Vector2(14, 29)
@@ -179,6 +180,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [32]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="Animation" id="Animation_fhjak"]
 resource_name = "p_idle"
@@ -260,9 +273,25 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35]
 }
 
+[sub_resource type="Animation" id="Animation_ik6gq"]
+resource_name = "p_die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nliqr"]
 _data = {
 &"RESET": SubResource("Animation_4sbt0"),
+&"p_die": SubResource("Animation_ik6gq"),
 &"p_idle": SubResource("Animation_fhjak"),
 &"p_jump_down": SubResource("Animation_nliqr"),
 &"p_jump_up": SubResource("Animation_e7tfm"),
@@ -270,8 +299,8 @@ _data = {
 &"p_walk": SubResource("Animation_1jg0o")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sbt0"]
-size = Vector2(3, 3)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhjak"]
+size = Vector2(1, 1)
 
 [node name="OPlayer" type="Node2D"]
 
@@ -316,6 +345,13 @@ hframes = 16
 vframes = 3
 frame = 32
 
+[node name="DeathSprite" type="Sprite2D" parent="body"]
+visible = false
+position = Vector2(-8, 0)
+texture = ExtResource("5_fhjak")
+hframes = 6
+frame = 5
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 visible = false
 position = Vector2(1, 1.5)
@@ -333,14 +369,16 @@ libraries = {
 }
 speed_scale = 2.0
 
-[node name="respawnCols" type="Area2D" parent="body"]
+[node name="ResLeft" type="Area2D" parent="body"]
+position = Vector2(-14, 17)
 
-[node name="left" type="CollisionShape2D" parent="body/respawnCols"]
-position = Vector2(-15, 18)
-shape = SubResource("RectangleShape2D_4sbt0")
+[node name="Col" type="CollisionShape2D" parent="body/ResLeft"]
+shape = SubResource("RectangleShape2D_fhjak")
 
-[node name="right" type="CollisionShape2D" parent="body/respawnCols"]
-position = Vector2(15, 18)
-shape = SubResource("RectangleShape2D_4sbt0")
+[node name="ResRight" type="Area2D" parent="body"]
+position = Vector2(14, 17)
+
+[node name="Col" type="CollisionShape2D" parent="body/ResRight"]
+shape = SubResource("RectangleShape2D_fhjak")
 
 [node name="Camera" type="Camera2D" parent="."]

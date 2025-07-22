@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 bullet=""
 stoppoint="The stop points in the level"
 winArea="area for winning"
+floor="Floor the player stands on"
 
 [input]
 

@@ -25,3 +25,8 @@ func winLevel():
 func transitionTo_Map():
 	transition()
 	get_tree().change_scene_to_file("res://worldmap.tscn")
+
+
+func resetLevel():
+	reset()
+	get_tree().reload_current_scene()
