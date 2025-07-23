@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://ciq67g52v6ohv"]
+[gd_scene load_steps=15 format=4 uid="uid://ciq67g52v6ohv"]
 
 [ext_resource type="Texture2D" uid="uid://co6kuvdnnn3t8" path="res://sprites/tilesets/spr_t_worldmap.png" id="2_2e73p"]
 [ext_resource type="PackedScene" uid="uid://ssouaotfgve1" path="res://objects/obj_stoppoint.tscn" id="2_4g60y"]
 [ext_resource type="Texture2D" uid="uid://2xwhbaqv4q46" path="res://sprites/player/spr_wm_player.png" id="3_2e73p"]
-[ext_resource type="PackedScene" path="res://levels/1-.tscn" id="3_lymnk"]
+[ext_resource type="PackedScene" uid="uid://bkgffgl1nnxbv" path="res://levels/1-2.tscn" id="3_aiiv4"]
+[ext_resource type="PackedScene" uid="uid://c478321jdy514" path="res://levels/1-3.tscn" id="3_lymnk"]
 [ext_resource type="Script" uid="uid://b1oeoalxad5uk" path="res://wm_player.gd" id="4_aiiv4"]
 [ext_resource type="PackedScene" uid="uid://dk47uuvf584us" path="res://levels/1-4.tscn" id="4_lymnk"]
 
@@ -239,7 +240,7 @@ metadata/levelName = "Thyne Intro"
 position = Vector2(200, 88)
 metadata/levelNum = 2
 metadata/levelName = "Subsequent Castle"
-metadata/LevelPath = ExtResource("3_lymnk")
+metadata/LevelPath = ExtResource("3_aiiv4")
 
 [node name="Stop3" parent="Stoppoints" instance=ExtResource("2_4g60y")]
 position = Vector2(200, 120)

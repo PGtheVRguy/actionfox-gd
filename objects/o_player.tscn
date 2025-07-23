@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ch65yy4i11agi" path="res://sprites/player/spr_p_death.png" id="5_fhjak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jg0o"]
-size = Vector2(14, 29)
+size = Vector2(14, 26)
 
 [sub_resource type="Animation" id="Animation_i88te"]
 length = 0.001
@@ -370,7 +370,7 @@ frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 visible = false
-position = Vector2(1, 1.5)
+position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_1jg0o")
 
 [node name="ArmAnimator" type="AnimationPlayer" parent="body"]

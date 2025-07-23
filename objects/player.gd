@@ -244,9 +244,9 @@ func _draw():
 			draw_line(global_position, grap_position, Color.BLUE, 4)
 
 func grapple(position):
-	grap_position = position
-	state = states.GRAPPLE
-	return true
+	#grap_position = position
+	#state = states.GRAPPLE
+	return false
 
 
 func set_arm(name, forcestop):
