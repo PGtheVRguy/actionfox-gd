@@ -40,6 +40,7 @@ var vsp = 0
 
 var keys = 0
 
+var hurtDelay = 0.0
 
 @onready
 var camera = $"../Camera"
@@ -154,7 +155,7 @@ func _physics_process(_delta: float) -> void:
 					if(ammo == 0):
 						reloading = true
 			if reloading == true:
-				reload_timer += (1.0/30.0)
+				reload_timer += (1.0/10.0)
 				print(reload_timer)
 				if(reload_timer >= 1):
 					reload_timer = 0
@@ -206,18 +207,22 @@ func _physics_process(_delta: float) -> void:
 				Global.winLevel()
 				#Global.transitionTo_Map()
 		states.DYING:
-			arm_sprite.visible = false
-			body_sprite.visible = false 
-			tail_sprite.visible = false
-			death_sprite.visible = true
-			animator.play("p_die")
+			if body_sprite.visible:
+				arm_sprite.visible = false
+				body_sprite.visible = false 
+				tail_sprite.visible = false
+				death_sprite.visible = true
+				animator.play("p_die")
+			if(death_sprite.frame == 0 ):
+				animator.stop()
+				animator.play("p_dead")
+				
 			if(Input.is_action_just_pressed("jump")):
 				Global.resetLevel()
 	
+	hurtDelay -= 1.0/60.0
+	
 	#check respawn area
-	
-
-	
 	if(isRespawnAllowed()):
 		respawnPos = global_position
 	if(hp <= 0):
@@ -269,7 +274,9 @@ func spriteDirectionOffset():
 		tail_sprite.global_position.y = global_position.y+1
 						
 func damage(amount):
-	hp -= amount
+	if hurtDelay <= 0:
+		hp -= amount
+		hurtDelay = 2
 	
 
 
@@ -291,6 +298,7 @@ func win():
 	state = states.WIN
 
 func addKey():
+	
 	keys += 1
 	return 0
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnpxyoyfewjru"]
+
+[ext_resource type="Script" uid="uid://d2grj3qwncr1j" path="res://objects/o_fireball.gd" id="1_pq726"]
+[ext_resource type="Texture2D" uid="uid://dhgvq4wdk6s8e" path="res://sprites/spr_fireball.png" id="2_pq726"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw2wg"]
+size = Vector2(4, 2)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_pq726")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pq726")
+
+[node name="collider" type="Area2D" parent="." groups=["bullet"]]
+
+[node name="collider" type="CollisionShape2D" parent="collider" groups=["bullet"]]
+shape = SubResource("RectangleShape2D_xw2wg")

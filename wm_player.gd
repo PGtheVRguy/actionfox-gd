@@ -9,7 +9,7 @@ var walking = false
 
 @onready var targetStop = $"../Stoppoints/Stop1"
 @onready var checker = $stopChecker
-
+@onready var camera = $Camera
 
 
 
@@ -37,6 +37,8 @@ func _physics_process(delta: float) -> void:
 		if checker.global_position.distance_to(targetStop.global_position) < 0.5:
 			velocity = Vector2.ZERO
 			walking = false
+	camera.global_position.y = global_position.y + sin(Global.tick/60.0)*2.0
+	camera.global_position.x = global_position.x
 	move_and_slide()
 		
 func checkPointExist(dir):

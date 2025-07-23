@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cerfyv6ql6dtp"]
+[gd_scene load_steps=27 format=3 uid="uid://cerfyv6ql6dtp"]
 
 [ext_resource type="Script" uid="uid://ponwuoa3ilvt" path="res://objects/player.gd" id="1_e7tfm"]
 [ext_resource type="Texture2D" uid="uid://bqw8boyy3d5iu" path="res://sprites/player/spr_p_sheet.png" id="2_e7tfm"]
@@ -193,6 +193,36 @@ tracks/1/keys = {
 "values": [5]
 }
 
+[sub_resource type="Animation" id="Animation_afiau"]
+resource_name = "p_dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ik6gq"]
+resource_name = "p_die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+
 [sub_resource type="Animation" id="Animation_fhjak"]
 resource_name = "p_idle"
 step = 0.1
@@ -273,24 +303,10 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35]
 }
 
-[sub_resource type="Animation" id="Animation_ik6gq"]
-resource_name = "p_die"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DeathSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [5, 4, 3, 2, 1, 0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nliqr"]
 _data = {
 &"RESET": SubResource("Animation_4sbt0"),
+&"p_dead": SubResource("Animation_afiau"),
 &"p_die": SubResource("Animation_ik6gq"),
 &"p_idle": SubResource("Animation_fhjak"),
 &"p_jump_down": SubResource("Animation_nliqr"),
