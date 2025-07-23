@@ -3,8 +3,8 @@ extends Node
 var level = null
 var tick = 0
 var compList = []
-
-
+var inMenu = true
+var mapPos = Vector2.ZERO
 
 func _process(delta: float) -> void:
 	tick += 1

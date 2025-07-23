@@ -11,6 +11,11 @@ var hearts = "./CanvasLayer/MarginContainer/top_left/hearts"
 
 var keys = "./CanvasLayer/MarginContainer/top_left/key"
 
+@onready var inGameGUI = $CanvasLayer/MarginContainer
+@onready var inMenuGUI = $CanvasLayer/MainMenu
+
+
+
 func _process(delta: float) -> void:
 	
 	#AMMO
@@ -37,3 +42,11 @@ func _process(delta: float) -> void:
 	if(player.keys == 2):
 		key0.show()
 		key1.show()
+
+
+func showMenu():
+	inMenuGUI.visibile = true
+	inGameGUI.visible = false
+func showGUI():
+	inMenuGUI.visibile = false
+	inGameGUI.visible = true

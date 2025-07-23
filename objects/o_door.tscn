@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c37rkceol2ems"]
+[gd_scene load_steps=6 format=3 uid="uid://c37rkceol2ems"]
 
 [ext_resource type="Script" uid="uid://r2t705crbg3x" path="res://o_door.gd" id="1_53342"]
 [ext_resource type="Texture2D" uid="uid://dum15qyjnvde2" path="res://sprites/spr_door.png" id="2_qeun8"]
+[ext_resource type="AudioStream" uid="uid://cnabegtevv7dp" path="res://sounds/snd_doorunlock.wav" id="3_qeun8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytsq2"]
 size = Vector2(32, 48)
@@ -24,3 +25,6 @@ shape = SubResource("RectangleShape2D_ytsq2")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_53342")
+
+[node name="SndDoorunlock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qeun8")

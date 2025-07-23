@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ciq67g52v6ohv"]
+[gd_scene load_steps=18 format=4 uid="uid://ciq67g52v6ohv"]
 
 [ext_resource type="Texture2D" uid="uid://co6kuvdnnn3t8" path="res://sprites/tilesets/spr_t_worldmap.png" id="2_2e73p"]
 [ext_resource type="PackedScene" uid="uid://ssouaotfgve1" path="res://objects/obj_stoppoint.tscn" id="2_4g60y"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c478321jdy514" path="res://levels/1-3.tscn" id="3_lymnk"]
 [ext_resource type="Script" uid="uid://b1oeoalxad5uk" path="res://wm_player.gd" id="4_aiiv4"]
 [ext_resource type="PackedScene" uid="uid://dk47uuvf584us" path="res://levels/1-4.tscn" id="4_lymnk"]
+[ext_resource type="PackedScene" uid="uid://cub0584f5fu8q" path="res://objects/o_menu.tscn" id="8_73jht"]
+[ext_resource type="AudioStream" uid="uid://cjt3f752yafl1" path="res://sounds/snd_fullySelect.wav" id="8_is4nh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w4oin"]
 texture = ExtResource("2_2e73p")
@@ -213,6 +215,9 @@ _data = {
 &"wm_walk": SubResource("Animation_aiiv4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_73jht"]
+radius = 10.0499
+
 [node name="worldmap" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -274,3 +279,24 @@ libraries = {
 position = Vector2(0, 7)
 
 [node name="Camera" type="Camera2D" parent="wmPlayer"]
+
+[node name="stopCol" type="Area2D" parent="wmPlayer"]
+position = Vector2(0, 1)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wmPlayer/stopCol"]
+shape = SubResource("CircleShape2D_73jht")
+
+[node name="SndSelect" type="AudioStreamPlayer" parent="wmPlayer"]
+stream = ExtResource("8_is4nh")
+volume_db = -30.847
+
+[node name="SndFullySelect" type="AudioStreamPlayer" parent="wmPlayer"]
+stream = ExtResource("8_is4nh")
+
+[node name="Control" parent="." instance=ExtResource("8_73jht")]
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 80.0

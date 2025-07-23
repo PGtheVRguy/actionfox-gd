@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cx2tpp86wft5w" path="res://levels/1-1.tscn" id="2_leia0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_leia0"]
-radius = 6.0
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_qx232"]
 length = 0.001
@@ -69,11 +69,17 @@ metadata/LevelPath = ExtResource("2_leia0")
 texture = ExtResource("1_j47uc")
 hframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["stoppoint"]]
 shape = SubResource("CircleShape2D_leia0")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5oyb0")
 }
+
+[node name="spotArea" type="Area2D" parent="." groups=["stoppoint"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spotArea" groups=["stoppoint"]]
+shape = SubResource("CircleShape2D_leia0")

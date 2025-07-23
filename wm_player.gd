@@ -10,32 +10,39 @@ var walking = false
 @onready var targetStop = $"../Stoppoints/Stop1"
 @onready var checker = $stopChecker
 @onready var camera = $Camera
-
-
+@onready var selectSound = $SndSelect
+@onready var fullySelectSound = $SndFullySelect
+func _ready() -> void:
+	if(Global.mapPos != Vector2.ZERO):
+		global_position = Global.mapPos
 
 
 func _physics_process(delta: float) -> void:
 	if not walking:
-		if Input.is_action_just_pressed("left"):
-			runTowardsStop(Vector2(-1, 0))
-		if Input.is_action_just_pressed("right"):
-			runTowardsStop(Vector2(1, 0))
-		if Input.is_action_just_pressed("down"):
-			runTowardsStop(Vector2(0, 1))
-		if Input.is_action_just_pressed("up"):
-			runTowardsStop(Vector2(0, -1))
-		if Input.is_action_just_pressed("jump"):
-			var lev = targetStop.get_meta("LevelPath")
-			if lev != null:
-				Global.level = lev
-				get_tree().change_scene_to_file("res://game.tscn")
+		if(Global.inMenu == false):
+			if Input.is_action_just_pressed("left"):
+				runTowardsStop(Vector2(-1, 0))
+			if Input.is_action_just_pressed("right"):
+				runTowardsStop(Vector2(1, 0))
+			if Input.is_action_just_pressed("down"):
+				runTowardsStop(Vector2(0, 1))
+			if Input.is_action_just_pressed("up"):
+				runTowardsStop(Vector2(0, -1))
+			if Input.is_action_just_pressed("jump"):
+				var lev = getCurrentSpot().get_meta("LevelPath")
+				if lev != null:
+					
+					Global.level = lev
+					Global.mapPos = global_position
+					get_tree().change_scene_to_file("res://game.tscn")
 		
 	if walking: 
-		print("---")
-		print(targetStop.get_meta("levelName"))
-		print(checker.global_position.distance_to(targetStop.global_position))
+		#print("---")
+		#print(targetStop.get_meta("levelName"))
+		#print(checker.global_position.distance_to(targetStop.global_position))
 		if checker.global_position.distance_to(targetStop.global_position) < 0.5:
 			velocity = Vector2.ZERO
+			selectSound.play()
 			walking = false
 	camera.global_position.y = global_position.y + sin(Global.tick/60.0)*2.0
 	camera.global_position.x = global_position.x
@@ -64,9 +71,23 @@ func checkPointExist(dir):
 		if perp.length() <= viewWidth:
 			if checker.global_position.distance_to(node.global_position) > 0.5:
 				targetStop = node
+				var path = targetStop.get_meta("LevelPath")
+				#print(getCurrentSpot())
+				if Global.compList.has(getCurrentSpot().get_meta("LevelPath")):
+					return true
+				if !Global.compList.has(path):
+					return false
 				return true
 
 	return false
+	
+func getCurrentSpot():
+	var overlaps = $stopCol.get_overlapping_areas()
+	print("Found", overlaps.size(), "overlaps.")
+	for area in overlaps:
+		if area.is_in_group("stoppoint"):
+			return area.get_parent()
+	
 func runTowardsStop(vec2):
 	if checkPointExist(vec2):
 		print("AAA")

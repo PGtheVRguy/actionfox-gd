@@ -55,8 +55,8 @@ var tail_sprite = $TailSprite
 @onready
 var death_sprite = $DeathSprite
 
-
-
+@onready var hurt_sound = $SndPlayerHurt
+@onready var gun_sound = $SndGunshot
 @onready
 var animator = $"Animator"
 @onready
@@ -141,11 +141,21 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_just_pressed("shoot"):
 				if(ammo > 0 and reloading == false):
 					print("SHOT")
+					gun_sound.play()
 					var scene_instance = bullet.instantiate()
 					layer_bullet = get_bullet_layer()
 					layer_bullet.add_child(scene_instance)
 					scene_instance.global_position = arm_sprite.global_position
-					scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
+					#controller
+					var controllerAngle = Vector2.ZERO
+					var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+					var yAxisUD = Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y)
+					controllerAngle = Vector2(xAxisRL, yAxisUD).angle()
+					scene_instance.rotation = controllerAngle
+					
+					
+					if(controllerAngle == 0.0):
+						scene_instance.rotation = arm_sprite.global_position.angle_to_point(get_global_mouse_position())
 					scene_instance.global_position.y = scene_instance.global_position.y-2 #asd
 					gun_timer = gun_timer_max
 					arm_sprite.frame = 7 
@@ -275,6 +285,7 @@ func spriteDirectionOffset():
 						
 func damage(amount):
 	if hurtDelay <= 0:
+		hurt_sound.play()
 		hp -= amount
 		hurtDelay = 2
 	
