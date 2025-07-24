@@ -29,6 +29,8 @@ const damage = 0.5
 @onready var leftFloorCheck = $floorChecks/left
 @onready var rightFloorCheck = $floorChecks/right
 
+@onready var animator = $Animator
+@onready var sprite = $Sprite
 
 func _ready():
 	bulletCollision.connect("area_entered", shot_check)
@@ -69,7 +71,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 	if(hp <= 0 ):
 		queue_free()
-
+	
+	if(velocity.x != 0.0):
+		animator.play("p_running")
+		if(player.global_position.x > global_position.x):
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
+	else:
+		animator.play('p_idle')
 
 func wake_up():
 	seePlayer = true

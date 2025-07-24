@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="foxjumper"
+config/name="Action Fox Mini"
+config/description="A mini version of Action Fox"
+config/version="1"
 run/main_scene="uid://ciq67g52v6ohv"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://cpbtxnryv1cnf"
+config/icon="uid://d3sc68dlx3kbm"
 
 [autoload]
 

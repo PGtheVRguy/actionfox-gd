@@ -1,7 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwk2mpk1u5upy"]
+[gd_scene load_steps=11 format=3 uid="uid://cwk2mpk1u5upy"]
 
 [ext_resource type="Script" uid="uid://corrxk2dacwd0" path="res://objects/o_zombie.gd" id="1_ih16m"]
 [ext_resource type="Texture2D" uid="uid://duwfu7vluftsw" path="res://sprites/zombies/spr_zombie.png" id="1_wkia1"]
+
+[sub_resource type="Animation" id="Animation_ih16m"]
+resource_name = "p_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_vbx5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_kxrn7"]
+resource_name = "p_running"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.3, 0.566667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 32, 33, 34, 35]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuqw6"]
+_data = {
+&"RESET": SubResource("Animation_vbx5t"),
+&"p_idle": SubResource("Animation_ih16m"),
+&"p_running": SubResource("Animation_kxrn7")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ih16m"]
 size = Vector2(13, 29)
@@ -26,8 +79,12 @@ vframes = 3
 frame = 1
 
 [node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kuqw6")
+}
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ih16m")
 
@@ -38,6 +95,7 @@ visible = false
 shape = SubResource("CircleShape2D_vbx5t")
 
 [node name="floorChecks" type="Area2D" parent="."]
+visible = false
 
 [node name="left" type="CollisionShape2D" parent="floorChecks"]
 position = Vector2(-15, 18)
@@ -48,6 +106,7 @@ position = Vector2(15, 18)
 shape = SubResource("RectangleShape2D_vbx5t")
 
 [node name="bulletCheck" type="Area2D" parent="."]
+visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="bulletCheck"]
 position = Vector2(0.5, 1.5)

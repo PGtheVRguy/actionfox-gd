@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cerfyv6ql6dtp"]
+[gd_scene load_steps=30 format=3 uid="uid://cerfyv6ql6dtp"]
 
 [ext_resource type="Script" uid="uid://ponwuoa3ilvt" path="res://objects/player.gd" id="1_e7tfm"]
 [ext_resource type="Texture2D" uid="uid://bqw8boyy3d5iu" path="res://sprites/player/spr_p_sheet.png" id="2_e7tfm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ch65yy4i11agi" path="res://sprites/player/spr_p_death.png" id="5_fhjak"]
 [ext_resource type="AudioStream" uid="uid://c251nskhjfvao" path="res://sounds/snd_gunshot.wav" id="6_jfy2f"]
 [ext_resource type="AudioStream" uid="uid://fwxox4f3laq5" path="res://sounds/snd_playerHurt.mp3" id="6_nliqr"]
+[ext_resource type="AudioStream" uid="uid://bhfovbocyqtok" path="res://sounds/snd_grabkey.wav" id="7_jfy2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jg0o"]
 size = Vector2(14, 26)
@@ -401,6 +402,9 @@ shape = SubResource("RectangleShape2D_fhjak")
 
 [node name="SndGunshot" type="AudioStreamPlayer" parent="body"]
 stream = ExtResource("6_jfy2f")
+
+[node name="SndGrabkey" type="AudioStreamPlayer" parent="body"]
+stream = ExtResource("7_jfy2f")
 
 [node name="SndPlayerHurt" type="AudioStreamPlayer" parent="body"]
 stream = ExtResource("6_nliqr")

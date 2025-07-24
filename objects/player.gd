@@ -57,6 +57,7 @@ var death_sprite = $DeathSprite
 
 @onready var hurt_sound = $SndPlayerHurt
 @onready var gun_sound = $SndGunshot
+@onready var key_sound = $SndGrabkey
 @onready
 var animator = $"Animator"
 @onready
@@ -309,7 +310,7 @@ func win():
 	state = states.WIN
 
 func addKey():
-	
+	key_sound.play()
 	keys += 1
 	return 0
 

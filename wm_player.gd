@@ -12,6 +12,8 @@ var walking = false
 @onready var camera = $Camera
 @onready var selectSound = $SndSelect
 @onready var fullySelectSound = $SndFullySelect
+@onready var animator = $AnimationPlayer
+@onready var sprite = $Sprite
 func _ready() -> void:
 	if(Global.mapPos != Vector2.ZERO):
 		global_position = Global.mapPos
@@ -19,6 +21,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not walking:
+		animator.play("wm_idle")
 		if(Global.inMenu == false):
 			if Input.is_action_just_pressed("left"):
 				runTowardsStop(Vector2(-1, 0))
@@ -28,7 +31,7 @@ func _physics_process(delta: float) -> void:
 				runTowardsStop(Vector2(0, 1))
 			if Input.is_action_just_pressed("up"):
 				runTowardsStop(Vector2(0, -1))
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") and Global.tick > 5:
 				var lev = getCurrentSpot().get_meta("LevelPath")
 				if lev != null:
 					
@@ -37,13 +40,20 @@ func _physics_process(delta: float) -> void:
 					get_tree().change_scene_to_file("res://game.tscn")
 		
 	if walking: 
+		animator.play("wm_walk")
 		#print("---")
 		#print(targetStop.get_meta("levelName"))
 		#print(checker.global_position.distance_to(targetStop.global_position))
 		if checker.global_position.distance_to(targetStop.global_position) < 0.5:
 			velocity = Vector2.ZERO
+			
 			selectSound.play()
 			walking = false
+	if(velocity.x != 0.0):
+		if(velocity.x < 0):
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
 	camera.global_position.y = global_position.y + sin(Global.tick/60.0)*2.0
 	camera.global_position.x = global_position.x
 	move_and_slide()

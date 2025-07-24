@@ -7,7 +7,8 @@ var inMenu = true
 var mapPos = Vector2.ZERO
 
 func _process(delta: float) -> void:
-	tick += 1
+	if(!inMenu):
+		tick += 1
 	
 	
 func reset():

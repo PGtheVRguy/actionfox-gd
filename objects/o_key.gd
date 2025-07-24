@@ -7,7 +7,7 @@ var offsetPos = 0.0
 
 
 @onready var collider = $Area
-@onready var player = get_node_or_null("/root/game/Player/body")
+@onready var player = get_node_or_null("/root/game/Player/body") #I hope this counts as a second of extra work
 @onready var sound = $SndGrabkey
 
 
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 func collided(collider2):
 	if collider2 == player:
 		player.addKey()
-		sound.play()
+		#sound.play()
 		queue_free()
 
 func reset():
